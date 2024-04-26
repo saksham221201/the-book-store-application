@@ -1,8 +1,13 @@
 package com.nagarro.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
 import java.time.LocalDateTime;
 
+@Entity
 public class Book {
+    @Id
     private String isbn;
     private String bookName;
     private String authorName;
