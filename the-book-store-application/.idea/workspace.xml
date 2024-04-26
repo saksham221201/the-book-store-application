@@ -5,13 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7609ab66-328f-4ac7-8953-d3c1b11acd86" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/nagarro/entity/Book.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/nagarro/io/AdminInput.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/nagarro/io/UserInput.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/nagarro/service/BookService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/nagarro/util/InputUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/nagarro/config/HibernateConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/nagarro/dao/BookDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/nagarro/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nagarro/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nagarro/entity/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nagarro/entity/Book.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +40,7 @@
     "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "saksham",
     "kotlin-language-version-configured": "true",
     "project.structure.last.edited": "Modules",
