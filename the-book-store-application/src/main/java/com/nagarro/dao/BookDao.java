@@ -6,8 +6,10 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import java.util.List;
+
 public class BookDao {
-    private SessionFactory sessionFactory = HibernateConfiguration.getSessionFactory();
+    private final SessionFactory sessionFactory = HibernateConfiguration.getSessionFactory();
 
     public void saveBookToDatabase(Book book){
         Session session = sessionFactory.openSession();
@@ -15,5 +17,10 @@ public class BookDao {
         session.saveOrUpdate(book);
         transaction.commit();
         session.close();
+    }
+
+    public List<Book> getAllBooks(){
+        Session session = sessionFactory.getCurrentSession();
+        return session.createQuery("Select * from Book", Book.class).getResultList();
     }
 }
