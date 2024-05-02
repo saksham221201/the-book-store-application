@@ -4,7 +4,7 @@ import com.nagarro.service.BookService;
 import com.nagarro.util.InputUtil;
 
 public class AdminInput {
-    public static void handleAdminInput(){
+    public static void handleAdminInput() throws Exception {
         System.out.println("Admin Options");
         System.out.println("1. Add a Book");
         System.out.println("2. Update a Book");
