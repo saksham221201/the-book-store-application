@@ -20,7 +20,7 @@ public class BookDao {
     }
 
     public List<Book> getAllBooks(){
-        Session session = sessionFactory.getCurrentSession();
-        return session.createQuery("Select * from Book", Book.class).getResultList();
+        Session session = sessionFactory.openSession();
+        return session.createQuery(" from Book", Book.class).getResultList();
     }
 }
