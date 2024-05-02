@@ -21,7 +21,12 @@ public class Book {
         this.arrivalTime = arrivalTime;
     }
 
-    public String getIsbn() {
+    public Book() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public String getIsbn() {
         return isbn;
     }
 
