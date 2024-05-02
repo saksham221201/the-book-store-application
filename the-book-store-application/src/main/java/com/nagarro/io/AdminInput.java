@@ -10,7 +10,8 @@ public class AdminInput {
         System.out.println("2. Update a Book");
         System.out.println("3. List all Book");
         System.out.println("4. List all Orders");
-        System.out.println("5. Find a Book");
+        System.out.println("5. Search a Book");
+        System.out.println("6. Find a Book");
 
         System.out.print("Enter your option: ");
         int option = InputUtil.readIntInput();
@@ -28,8 +29,11 @@ public class AdminInput {
             case 4:
                 break;
             case 5:
-                BookService.findABook();
+                BookService.listAllBooksBySearch();
                 break;
+            case 6:
+            	BookService.findABook();
+            	break;
             default:
                 System.out.println("Invalid choice");
         }

@@ -36,6 +36,24 @@ public class BookService {
     }
 
     public static void findABook(){
+    	System.out.print("Enter ISBN: ");
+        String isbn = InputUtil.readInput();
+        
+    	BookDao bookDao = new BookDao();
+    	Book book = bookDao.getBookByIsbn(isbn);
+    	
+    	System.out.println(book.getBookName());
 
+    }
+    
+    public static void listAllBooksBySearch(){
+    	System.out.println("Search: ");
+    	String search = InputUtil.readInput();
+    	
+        BookDao bookDao = new BookDao();
+        List<Book> books = bookDao.getBooksBySearch(search);
+        for (Book book : books){
+            System.out.println(book.getBookName());
+        }
     }
 }
