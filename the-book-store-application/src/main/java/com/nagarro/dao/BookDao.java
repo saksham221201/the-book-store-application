@@ -14,7 +14,8 @@ public class BookDao {
     public void saveBookToDatabase(Book book){
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        session.saveOrUpdate(book);
+        session.save(book);
+        //catch duplicate entry - org.hibernate.exception.ConstraintViolationException.
         transaction.commit();
         session.close();
     }
@@ -23,4 +24,29 @@ public class BookDao {
         Session session = sessionFactory.openSession();
         return session.createQuery(" from Book", Book.class).getResultList();
     }
+    
+    public Book getBookByIsbn(String isbn){
+    	Session session = sessionFactory.openSession();
+    	return session.createQuery(" from Book where isbn="+"\'"+isbn+"\'",Book.class).getSingleResult();
+    }
+    
+    public List<Book> getBooksBySearch(String search){
+        Session session = sessionFactory.openSession();
+        return session.createQuery(" from Book where authorName="+"\'"+search+"\'"+" or bookName="+"\'"+search+"\'"+" or description="+"\'"+search+"\'", Book.class).getResultList();
+    }
+    
+//    public List<Book> getBooksByAuthor(String authorName){
+//        Session session = sessionFactory.openSession();
+//        return session.createQuery(" from Book where authorName="+"\'"+authorName+"\'", Book.class).getResultList();
+//    }
+//    
+//    public List<Book> getBooksByName(String bookName){
+//        Session session = sessionFactory.openSession();
+//       return session.createQuery(" from Book where bookName="+"\'"+bookName+"\'", Book.class).getResultList();
+//    }
+//    
+//    public List<Book> getBooksByDescription(String description){
+//        Session session = sessionFactory.openSession();
+//        return session.createQuery(" from Book where description="+"\'"+description+"\'", Book.class).getResultList();
+//    }
 }
