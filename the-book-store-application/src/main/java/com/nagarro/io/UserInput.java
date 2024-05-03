@@ -1,6 +1,7 @@
 package com.nagarro.io;
 
 import com.nagarro.service.BookService;
+import com.nagarro.service.OrderService;
 import com.nagarro.util.InputUtil;
 
 public class UserInput {
@@ -17,6 +18,7 @@ public class UserInput {
                 BookService.listAllBooks();
                 break;
             case 2:
+                OrderService.addOrder();
                 break;
             default:
                 System.out.println("Invalid choice");
