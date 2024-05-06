@@ -2,6 +2,7 @@ package com.nagarro.entity;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -11,6 +12,9 @@ public class Order {
     private Long orderId;
     private String isbn;
     private LocalDateTime orderTimestamp;
+    
+    @OneToMany(mappedBy = "order")
+    private List<Book> books;
 
     public Order(){
         super();
