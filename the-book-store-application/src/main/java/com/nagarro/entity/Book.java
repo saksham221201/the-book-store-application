@@ -2,6 +2,10 @@ package com.nagarro.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.ColumnDefault;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -12,6 +16,12 @@ public class Book {
     private String authorName;
     private String description;
     private LocalDateTime arrivalTime;
+    
+    @ManyToOne
+    private Order order;
+    
+    @ColumnDefault("5")
+    private int quantity;
 
     public Book(String isbn, String bookName, String authorName, String description, LocalDateTime arrivalTime) {
         this.isbn = isbn;
@@ -19,7 +29,9 @@ public class Book {
         this.authorName = authorName;
         this.description = description;
         this.arrivalTime = arrivalTime;
+        this.quantity=5;
     }
+    
 
     public Book() {
 		super();
@@ -65,4 +77,12 @@ public class Book {
     public void setArrivalTime(LocalDateTime arrivalTime) {
         this.arrivalTime = arrivalTime;
     }
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
 }
