@@ -1,6 +1,7 @@
 package com.nagarro.io;
 
 import com.nagarro.service.BookService;
+import com.nagarro.service.OrderService;
 import com.nagarro.util.InputUtil;
 
 public class AdminInput {
@@ -27,6 +28,7 @@ public class AdminInput {
                 BookService.listAllBooks();
                 break;
             case 4:
+                OrderService.listAllOrders();
                 break;
             case 5:
                 BookService.listAllBooksBySearch();
