@@ -2,6 +2,7 @@ package com.nagarro.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.ColumnDefault;
@@ -16,12 +17,9 @@ public class Book {
     private String authorName;
     private String description;
     private LocalDateTime arrivalTime;
-    
-    @ManyToOne
-    private Order order;
-    
     @ColumnDefault("5")
     private int quantity;
+
 
     public Book(String isbn, String bookName, String authorName, String description, LocalDateTime arrivalTime) {
         this.isbn = isbn;
