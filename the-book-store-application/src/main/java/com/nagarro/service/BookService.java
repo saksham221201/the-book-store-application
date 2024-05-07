@@ -44,7 +44,7 @@ public class BookService {
 				.sorted((n1, n2) -> n2.getArrivalTime().compareTo(n1.getArrivalTime()))
 				.toList();
 		for (Book book : books) {
-			System.out.println(book.getBookName());
+			System.out.println("BookName: " + book.getBookName() + " BookAuthor: " + book.getAuthorName() + " Time of Arrival: " + book.getArrivalTime());
 		}
 	}
 
@@ -69,7 +69,7 @@ public class BookService {
 			throw new Exception("Book does not exist");
 		}
 		for (Book book : books) {
-			System.out.println("Book Name: " + book.getBookName() + " Author: " + book.getAuthorName());
+			System.out.println("Book Name: " + book.getBookName() + " Author: " + book.getAuthorName() + " Time of Arrival: " + book.getArrivalTime());
 		}
 	}
 }

@@ -12,8 +12,11 @@ public class Order {
     private Long orderId;
     private String isbn;
     private LocalDateTime orderTimestamp;
-    
-    @OneToMany(mappedBy = "order")
+
+    @OneToMany
+    @JoinTable(name = "book_order",
+            joinColumns = @JoinColumn(name = "order_id"),
+            inverseJoinColumns = @JoinColumn(name = "isbn"))
     private List<Book> books;
 
     public Order(){
@@ -46,6 +49,14 @@ public class Order {
 
     public void setIsbn(String isbn) {
         this.isbn = isbn;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 
     public LocalDateTime getOrderTimestamp() {

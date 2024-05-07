@@ -15,14 +15,13 @@ public class OrderDao {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         session.save(order);
-        //catch duplicate entry - org.hibernate.exception.ConstraintViolationException.
+        // Catch duplicate entry - org.hibernate.exception.ConstraintViolationException.
         transaction.commit();
         session.close();
     }
 
     public List<Order> getAllOrders(){
         Session session = sessionFactory.openSession();
-        System.out.println("Hii");
         return session.createQuery(" from Order", Order.class).getResultList();
     }
 }
