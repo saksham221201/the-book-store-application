@@ -41,6 +41,6 @@ public class BookDao {
     
     public List<Book> getBooksBySearch(String search){
         Session session = sessionFactory.openSession();
-        return session.createQuery(" from Book where authorName="+"\'"+search+"\'"+" or bookName="+"\'"+search+"\'"+" or description="+"\'"+search+"\'", Book.class).getResultList();
+        return session.createQuery(" from Book where authorName like "+"\'"+"%"+search+"%"+"\'"+" or bookName like"+"\'"+"%"+search+"%"+"\'"+" or description like "+"\'"+"%"+search+"%"+"\'", Book.class).getResultList();
     }
 }
