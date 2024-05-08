@@ -5,12 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7609ab66-328f-4ac7-8953-d3c1b11acd86" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/nagarro/exception/ResourceNotFound.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/nagarro/dao/OrderDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nagarro/dao/OrderDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nagarro/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nagarro/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nagarro/config/HibernateConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nagarro/dao/BookDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nagarro/dao/OrderDao.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/nagarro/entity/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nagarro/entity/Book.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/nagarro/entity/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nagarro/entity/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nagarro/io/AdminInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nagarro/io/AdminInput.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/nagarro/service/BookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nagarro/service/BookService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/nagarro/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nagarro/service/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hibernate.cfg.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
