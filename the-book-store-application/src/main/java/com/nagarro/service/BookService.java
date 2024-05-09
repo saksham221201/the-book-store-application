@@ -1,6 +1,7 @@
 package com.nagarro.service;
 
 import com.nagarro.entity.Book;
+import com.nagarro.io.Output;
 import com.nagarro.exception.ResourceAlreadyExistsException;
 import com.nagarro.exception.ResourceNotFoundException;
 import com.nagarro.util.InputUtil;
@@ -13,6 +14,15 @@ import java.util.Map;
 
 public class BookService {
 	private static final Map<String, Book> bookInventory = new HashMap<>();
+
+	public static void fillData() {
+		Book book1 = new Book("a1", "Harry Potter", "DumbbellDore", "This is Harry Potter Series.", LocalDateTime.now());
+		Book book2 = new Book("b2", "Two States", "Chetan Bhagat", "This is Love Story from two different states.", LocalDateTime.now());
+		Book book3 = new Book("c3", "Harry Potter 2", "DumbbellDore", "This is Harry Potter Series.", LocalDateTime.now());
+		bookInventory.put("a1", book1);
+		bookInventory.put("b2", book2);
+		bookInventory.put("c3", book3);
+	}
 
 	public static void addBook() {
 		try {
@@ -62,9 +72,7 @@ public class BookService {
 
 	public static void listAllBooks() {
 		List<Book> books = new ArrayList<>(bookInventory.values());
-		for (Book book : books) {
-			System.out.println("BookName: " + book.getBookName() + ", BookAuthor: " + book.getAuthorName() + ", Time of Arrival: " + book.getArrivalTime() + ", Quantity: " + book.getQuantity());
-		}
+		Output.outputBooks(books);
 	}
 
 	public static void findABook() {

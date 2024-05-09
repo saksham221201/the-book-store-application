@@ -2,10 +2,12 @@ package com.nagarro;
 
 import com.nagarro.io.AdminInput;
 import com.nagarro.io.UserInput;
+import com.nagarro.service.BookService;
 import com.nagarro.util.InputUtil;
 
 public class Main {
     public static void main(String[] args) {
+        BookService.fillData();
     	String decision = "y";
         do {
             try{
