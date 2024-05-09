@@ -1,10 +1,10 @@
 package com.nagarro.exception;
 
-public class ResourceAlreadyExists extends RuntimeException {
+public class ResourceAlreadyExistsException extends RuntimeException {
 	 private String message;
 	    private int code;
 
-	    public ResourceAlreadyExists(String message, int code) {
+	    public ResourceAlreadyExistsException(String message, int code) {
 	        this.message = message;
 	        this.code = code;
 	    }

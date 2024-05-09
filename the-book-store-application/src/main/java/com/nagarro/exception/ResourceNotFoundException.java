@@ -1,10 +1,10 @@
 package com.nagarro.exception;
 
-public class ResourceNotFound extends RuntimeException {
+public class ResourceNotFoundException extends RuntimeException {
     private String message;
     private int code;
 
-    public ResourceNotFound(String message, int code) {
+    public ResourceNotFoundException(String message, int code) {
         this.message = message;
         this.code = code;
     }
