@@ -1,6 +1,7 @@
 package com.nagarro.service;
 
 import com.nagarro.entity.Book;
+import com.nagarro.exception.ResourceAlreadyExistsException;
 import com.nagarro.util.InputUtil;
 
 import java.time.LocalDateTime;
@@ -13,18 +14,27 @@ public class BookService {
 	private static final Map<String, Book> bookInventory = new HashMap<>();
 
 	public static void addBook() {
-		System.out.print("Enter ISBN: ");
-		String isbn = InputUtil.readInput();
-		System.out.print("Enter Book Name: ");
-		String bookName = InputUtil.readInput();
-		System.out.print("Enter Book Author: ");
-		String bookAuthor = InputUtil.readInput();
-		System.out.print("Enter Description: ");
-		String description = InputUtil.readInput();
-		Book book = new Book(isbn, bookName, bookAuthor, description, LocalDateTime.now());
-		bookInventory.put(isbn, book);
-		System.out.println("Book Saved Successfully in the database!!");
-		listAllBooks();
+		try {
+			System.out.print("Enter ISBN: ");
+			String isbn = InputUtil.readInput();
+			if(bookInventory.containsKey(isbn)) {
+				throw new ResourceAlreadyExistsException("This isbn: "+isbn+ " already exists", 404);
+			}
+			System.out.print("Enter Book Name: ");
+			String bookName = InputUtil.readInput();
+			System.out.print("Enter Book Author: ");
+			String bookAuthor = InputUtil.readInput();
+			System.out.print("Enter Description: ");
+			String description = InputUtil.readInput();
+			Book book = new Book(isbn, bookName, bookAuthor, description, LocalDateTime.now());
+			bookInventory.put(isbn, book);
+			System.out.println("Book Saved Successfully in the database!!");
+			listAllBooks();
+		} catch (ResourceAlreadyExistsException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			System.out.println("Error - "+e.getMessage()+"\n"+"Status code-"+ e.getCode());
+		}
 	}
 
 	public static void updateBook() {
