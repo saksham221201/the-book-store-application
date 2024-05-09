@@ -26,7 +26,7 @@ public class OrderService {
             System.out.println("There are no Orders in the database!");
         } else{
             for (Order order : orders){
-                System.out.println("OrderId: " + order.getOrderId() + "ISBN: " + order.getIsbn() + "Timestamp: " + order.getOrderTimestamp());
+                System.out.println("OrderId: " + order.getOrderId() + " ISBN: " + order.getIsbn() + " Timestamp: " + order.getOrderTimestamp());
             }
         }
     }
