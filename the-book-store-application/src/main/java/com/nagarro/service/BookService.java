@@ -4,10 +4,13 @@ import com.nagarro.entity.Book;
 import com.nagarro.util.InputUtil;
 
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class BookService {
-	private static final Map<String, Book> bookInventory = new TreeMap<>();
+	private static final Map<String, Book> bookInventory = new HashMap<>();
 
 	public static void addBook() {
 		System.out.print("Enter ISBN: ");
@@ -41,7 +44,7 @@ public class BookService {
 	public static void listAllBooks() {
 		List<Book> books = new ArrayList<>(bookInventory.values());
 		for (Book book : books) {
-			System.out.println("BookName: " + book.getBookName() + " BookAuthor: " + book.getAuthorName() + " Time of Arrival: " + book.getArrivalTime() + " Quantity: " + book.getQuantity());
+			System.out.println("BookName: " + book.getBookName() + ", BookAuthor: " + book.getAuthorName() + ", Time of Arrival: " + book.getArrivalTime() + ", Quantity: " + book.getQuantity());
 		}
 	}
 
