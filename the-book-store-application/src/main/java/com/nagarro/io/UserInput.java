@@ -5,10 +5,11 @@ import com.nagarro.service.OrderService;
 import com.nagarro.util.InputUtil;
 
 public class UserInput {
-    public static void handleUserInput(){
+    public static boolean handleUserInput(){
         System.out.println("User Options");
         System.out.println("1. List all Books");
         System.out.println("2. Order a Book");
+        System.out.println("3. Exit to Main Menu");
 
         System.out.print("Enter your option: ");
         int option = InputUtil.readIntInput();
@@ -20,8 +21,11 @@ public class UserInput {
             case 2:
                 OrderService.addOrder();
                 break;
+            case 3:
+                return false;
             default:
                 System.out.println("Invalid choice");
         }
+        return true;
     }
 }

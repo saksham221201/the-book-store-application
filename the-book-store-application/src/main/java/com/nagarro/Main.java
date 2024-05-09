@@ -15,24 +15,16 @@ public class Main {
 
                 if(user.equalsIgnoreCase("Admin")){
                     do {
-                        AdminInput.handleAdminInput();
-                        System.out.print("Do you want to continue as Admin? (y/n): ");
-                        decision = InputUtil.readInput();
-                        while(!decision.equalsIgnoreCase("y") && !decision.equalsIgnoreCase("n")){
-                            System.out.println("Invalid Input. Please enter 'y' or 'n'.");
-                            System.out.print("Do you want to continue as Admin? (y/n): ");
-                            decision = InputUtil.readInput();
+                        boolean continueAdmin = AdminInput.handleAdminInput();
+                        if (!continueAdmin) {
+                            decision = "n";
                         }
                     } while (decision.equalsIgnoreCase("y"));
                 } else if (user.equalsIgnoreCase("User")) {
                     do {
-                        UserInput.handleUserInput();
-                        System.out.print("Do you want to continue as User? (y/n): ");
-                        decision = InputUtil.readInput();
-                        while(!decision.equalsIgnoreCase("y") && !decision.equalsIgnoreCase("n")){
-                            System.out.println("Invalid Input. Please enter 'y' or 'n'.");
-                            System.out.print("Do you want to continue as User? (y/n): ");
-                            decision = InputUtil.readInput();
+                        boolean continueUser = UserInput.handleUserInput();
+                        if (!continueUser) {
+                            decision = "n";
                         }
                     } while (decision.equalsIgnoreCase("y"));
                 } else if (user.equalsIgnoreCase("Exit")) {
@@ -40,9 +32,7 @@ public class Main {
                 } else{
                     throw new Exception("Enter Admin or User");
                 }
-                if(!decision.equalsIgnoreCase("y")){
-                    decision = "y";
-                }
+                decision = "y";
             } catch (Exception e){
                 System.out.println("Please enter correct value: " + e.getMessage());
             }

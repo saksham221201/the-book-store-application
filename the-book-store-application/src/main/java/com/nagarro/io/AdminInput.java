@@ -5,13 +5,14 @@ import com.nagarro.service.OrderService;
 import com.nagarro.util.InputUtil;
 
 public class AdminInput {
-    public static void handleAdminInput() {
+    public static boolean handleAdminInput() {
         System.out.println("Admin Options");
         System.out.println("1. Add a Book");
         System.out.println("2. Update a Book");
         System.out.println("3. List all Book");
         System.out.println("4. List all Orders");
         System.out.println("5. Find a Book");
+        System.out.println("6. Exit to Main Menu");
 
         System.out.print("Enter your option: ");
         int option = InputUtil.readIntInput();
@@ -32,8 +33,11 @@ public class AdminInput {
             case 5:
             	BookService.findABook();
             	break;
+            case 6:
+                return false;
             default:
                 System.out.println("Invalid choice");
         }
+        return true;
     }
 }
