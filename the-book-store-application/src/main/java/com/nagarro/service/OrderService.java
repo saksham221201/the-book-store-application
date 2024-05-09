@@ -1,6 +1,7 @@
 package com.nagarro.service;
 
 import com.nagarro.entity.Order;
+import com.nagarro.io.Output;
 import com.nagarro.util.InputUtil;
 
 import java.time.LocalDateTime;
@@ -15,6 +16,7 @@ public class OrderService {
     public static void addOrder(){
         System.out.print("Enter ISBN of book you want to order: ");
         String isbn = InputUtil.readInput();
+
         Order order = new Order(1L, isbn, "PLACED", LocalDateTime.now());
         orderInventory.put(1L, order);
         System.out.println("Order Placed Successfully");
@@ -25,9 +27,7 @@ public class OrderService {
         if (orders.isEmpty()) {
             System.out.println("There are no Orders in the database!");
         } else{
-            for (Order order : orders){
-                System.out.println("OrderId: " + order.getOrderId() + " ISBN: " + order.getIsbn() + " Timestamp: " + order.getOrderTimestamp());
-            }
+            Output.displayOrders(orders);
         }
     }
 }
