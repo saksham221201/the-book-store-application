@@ -19,6 +19,7 @@ public class BookService {
 		Book book1 = new Book("a1", "Harry Potter", "DumbbellDore", "This is Harry Potter Series.", LocalDateTime.now());
 		Book book2 = new Book("b2", "Two States", "Chetan Bhagat", "This is Love Story from two different states.", LocalDateTime.now());
 		Book book3 = new Book("c3", "Harry Potter 2", "DumbbellDore", "This is Harry Potter Series.", LocalDateTime.now());
+
 		bookInventory.put("a1", book1);
 		bookInventory.put("b2", book2);
 		bookInventory.put("c3", book3);
