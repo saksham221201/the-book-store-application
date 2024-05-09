@@ -87,18 +87,20 @@ public class BookService {
 		List<Book> searchResult = new ArrayList<>();
 		try {
 			for (Map.Entry<String, Book> entry : bookInventory.entrySet()) {
-				if (entry.getValue().getBookName().equalsIgnoreCase(search) ||
-						entry.getValue().getAuthorName().equalsIgnoreCase(search) ||
-						entry.getValue().getDescription().equalsIgnoreCase(search)) {
+				if (entry.getValue().getBookName().contains(search) ||
+						entry.getValue().getAuthorName().contains(search) ||
+						entry.getValue().getDescription().contains(search)) {
 					searchResult.add(entry.getValue());
 				}
 			}
 			if (searchResult.isEmpty()) {
 				throw new ResourceNotFoundException("No Results found!", 404);
+			}else {
+				Output.displayBooks(searchResult);
 			}
 		} catch (ResourceNotFoundException e) {
 			System.out.println("Error! "+e.getMessage() + "\n" + "Status code: "+ e.getCode());
 		}
-		Output.displayBooks(searchResult);
+		
 	}
 }
