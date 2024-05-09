@@ -1,23 +1,14 @@
 package com.nagarro.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
-import org.hibernate.annotations.ColumnDefault;
-
 import java.time.LocalDateTime;
 
-@Entity
 public class Book {
-    @Id
+
     private String isbn;
     private String bookName;
     private String authorName;
     private String description;
     private LocalDateTime arrivalTime;
-    @ColumnDefault("5")
     private int quantity;
 
 
@@ -27,7 +18,7 @@ public class Book {
         this.authorName = authorName;
         this.description = description;
         this.arrivalTime = arrivalTime;
-        this.quantity=5;
+        this.quantity = 5;
     }
     
 
