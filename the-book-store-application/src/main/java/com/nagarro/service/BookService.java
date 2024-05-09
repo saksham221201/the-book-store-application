@@ -72,7 +72,7 @@ public class BookService {
 
 	public static void listAllBooks() {
 		List<Book> books = new ArrayList<>(bookInventory.values());
-		Output.outputBooks(books);
+		Output.displayBooks(books);
 	}
 
 	public static void findABook() {

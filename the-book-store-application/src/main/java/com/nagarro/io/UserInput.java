@@ -9,7 +9,8 @@ public class UserInput {
         System.out.println("User Options");
         System.out.println("1. List all Books");
         System.out.println("2. Order a Book");
-        System.out.println("3. Exit to Main Menu");
+        System.out.println("3. List all Orders");
+        System.out.println("4. Exit to Main Menu");
 
         System.out.print("Enter your option: ");
         int option = InputUtil.readIntInput();
@@ -22,6 +23,9 @@ public class UserInput {
                 OrderService.addOrder();
                 break;
             case 3:
+                OrderService.listAllOrders();
+                break;
+            case 4:
                 return false;
             default:
                 System.out.println("Invalid choice");
