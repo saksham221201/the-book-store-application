@@ -42,8 +42,6 @@ public class BookService {
 			System.out.println("Book Saved Successfully in the database!!");
 			listAllBooks();
 		} catch (ResourceAlreadyExistsException e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
 			System.out.println("Error - "+e.getMessage()+"\n"+"Status code - "+ e.getCode());
 		}
 	}
@@ -65,8 +63,7 @@ public class BookService {
 			bookInventory.put(isbn, book);
 			System.out.println("Book Updated Successfully!!");
 		} catch (ResourceNotFoundException e) {
-			// TODO Auto-generated catch block
-			System.out.println("Error - "+e.getMessage()+"\n"+"Status code - "+ e.getCode());
+			System.out.println("Error! "+e.getMessage() + "\n" + "Status code: "+ e.getCode());
 		}
 	}
 
@@ -81,5 +78,26 @@ public class BookService {
 		Book book = bookInventory.get(isbn);
 
 		System.out.println("Book Name: " + book.getBookName() + " Author: " + book.getAuthorName());
+	}
+
+	public static void searchABook() {
+		System.out.print("Search: ");
+		String search = InputUtil.readInput();
+		List<Book> searchResult = new ArrayList<>();
+		try {
+			for (Map.Entry<String, Book> entry : bookInventory.entrySet()) {
+				if (entry.getValue().getBookName().equalsIgnoreCase(search) ||
+						entry.getValue().getAuthorName().equalsIgnoreCase(search) ||
+						entry.getValue().getDescription().equalsIgnoreCase(search)) {
+					searchResult.add(entry.getValue());
+				}
+			}
+			if (searchResult.isEmpty()) {
+				throw new ResourceNotFoundException("No Results found!", 404);
+			}
+		} catch (ResourceNotFoundException e) {
+			System.out.println("Error! "+e.getMessage() + "\n" + "Status code: "+ e.getCode());
+		}
+		Output.displayBooks(searchResult);
 	}
 }

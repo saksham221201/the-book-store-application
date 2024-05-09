@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7609ab66-328f-4ac7-8953-d3c1b11acd86" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/nagarro/io/Output.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nagarro/io/Output.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nagarro/io/AdminInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nagarro/io/AdminInput.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nagarro/io/UserInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nagarro/io/UserInput.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nagarro/service/BookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nagarro/service/BookService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
