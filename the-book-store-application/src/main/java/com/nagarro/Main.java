@@ -16,9 +16,11 @@ public class Main {
             }
             if (user.equalsIgnoreCase("User")) {
                 UserInput.handleUserInput();
-            } else System.out.println("Please enter correct value.");
-        } catch (Exception e) {
-            System.out.println("Please enter correct value: " + e.getMessage());
+            } else {
+                System.out.println("Please enter correct value.");
+            }
+        } catch (Exception e){
+            System.out.println("Error! " + e.getMessage());
         }
     }
 }
