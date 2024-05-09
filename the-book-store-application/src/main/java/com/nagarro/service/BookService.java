@@ -2,6 +2,7 @@ package com.nagarro.service;
 
 import com.nagarro.entity.Book;
 import com.nagarro.exception.ResourceAlreadyExistsException;
+import com.nagarro.exception.ResourceNotFoundException;
 import com.nagarro.util.InputUtil;
 
 import java.time.LocalDateTime;
@@ -18,7 +19,7 @@ public class BookService {
 			System.out.print("Enter ISBN: ");
 			String isbn = InputUtil.readInput();
 			if(bookInventory.containsKey(isbn)) {
-				throw new ResourceAlreadyExistsException("This isbn: "+isbn+ " already exists", 404);
+				throw new ResourceAlreadyExistsException("This isbn: "+isbn+ " already exists", 400);
 			}
 			System.out.print("Enter Book Name: ");
 			String bookName = InputUtil.readInput();
@@ -33,22 +34,30 @@ public class BookService {
 		} catch (ResourceAlreadyExistsException e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
-			System.out.println("Error - "+e.getMessage()+"\n"+"Status code-"+ e.getCode());
+			System.out.println("Error - "+e.getMessage()+"\n"+"Status code - "+ e.getCode());
 		}
 	}
 
 	public static void updateBook() {
-		System.out.print("Enter ISBN: ");
-		String isbn = InputUtil.readInput();
-		System.out.print("Enter Book Name: ");
-		String bookName = InputUtil.readInput();
-		System.out.print("Enter Book Author: ");
-		String bookAuthor = InputUtil.readInput();
-		System.out.print("Enter Description: ");
-		String description = InputUtil.readInput();
-		Book book = new Book(isbn, bookName, bookAuthor, description, LocalDateTime.now());
-		bookInventory.put(isbn, book);
-		System.out.println("Book Updated Successfully!!");
+		try {
+			System.out.print("Enter ISBN: ");
+			String isbn = InputUtil.readInput();
+			if(!bookInventory.containsKey(isbn)) {
+				throw new ResourceNotFoundException("This isbn: "+isbn+ " does not exists", 404);
+			}
+			System.out.print("Enter Book Name: ");
+			String bookName = InputUtil.readInput();
+			System.out.print("Enter Book Author: ");
+			String bookAuthor = InputUtil.readInput();
+			System.out.print("Enter Description: ");
+			String description = InputUtil.readInput();
+			Book book = new Book(isbn, bookName, bookAuthor, description, LocalDateTime.now());
+			bookInventory.put(isbn, book);
+			System.out.println("Book Updated Successfully!!");
+		} catch (ResourceNotFoundException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Error - "+e.getMessage()+"\n"+"Status code - "+ e.getCode());
+		}
 	}
 
 	public static void listAllBooks() {
