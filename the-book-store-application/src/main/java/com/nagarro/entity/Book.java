@@ -8,24 +8,23 @@ public class Book {
     private String bookName;
     private String authorName;
     private String description;
+    private double bookPrice;
     private LocalDateTime arrivalTime;
     private int quantity;
 
+    public Book() {
+        super();
+    }
 
-    public Book(String isbn, String bookName, String authorName, String description, LocalDateTime arrivalTime) {
+    public Book(String isbn, String bookName, String authorName, String description, double bookPrice, LocalDateTime arrivalTime) {
         this.isbn = isbn;
         this.bookName = bookName;
         this.authorName = authorName;
         this.description = description;
+        this.bookPrice = bookPrice;
         this.arrivalTime = arrivalTime;
         this.quantity = 5;
     }
-    
-
-    public Book() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 
 	public String getIsbn() {
         return isbn;
@@ -58,6 +57,10 @@ public class Book {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public double getBookPrice() { return bookPrice; }
+
+    public void setBookPrice(double bookPrice) { this.bookPrice = bookPrice; }
 
     public LocalDateTime getArrivalTime() {
         return arrivalTime;
