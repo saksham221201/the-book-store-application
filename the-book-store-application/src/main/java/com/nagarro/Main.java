@@ -1,6 +1,7 @@
 package com.nagarro;
 
 import com.nagarro.constant.Constant;
+import com.nagarro.constant.Constants;
 import com.nagarro.io.AdminInput;
 import com.nagarro.io.UserInput;
 import com.nagarro.service.BookService;
@@ -16,21 +17,21 @@ public class Main {
                 System.out.print("Type Admin for Admin and User for Normal User and Exit for exiting: ");
                 String user = InputUtil.readInput();
 
-                if(user.equalsIgnoreCase(Constant.ADMIN)){
+                if(user.equalsIgnoreCase(Constants.ADMIN.name())){
                     do {
                         boolean continueAdmin = AdminInput.handleAdminInput();
                         if (!continueAdmin) {
                             decision = "N";
                         }
                     } while (decision.equalsIgnoreCase("Y"));
-                } else if (user.equalsIgnoreCase(Constant.USER)) {
+                } else if (user.equalsIgnoreCase(Constants.USER.name())) {
                     do {
                         boolean continueUser = UserInput.handleUserInput();
                         if (!continueUser) {
                             decision = "N";
                         }
                     } while (decision.equalsIgnoreCase("Y"));
-                } else if (user.equalsIgnoreCase(Constant.EXIT)) {
+                } else if (user.equalsIgnoreCase(Constants.EXIT.name())) {
                     System.exit(0);
                 } else{
                     throw new Exception("Enter Admin or User");

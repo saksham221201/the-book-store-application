@@ -86,7 +86,7 @@ public class BookService {
 	public static void markOutOfStock() {
 		System.out.print("Enter ISBN: ");
 		String isbn = InputUtil.readInput();
-		Book book = bookInventory.get(isbn.toLowerCase());
+		Book book = bookInventory.get(isbn.toUpperCase());
 		book.setQuantity(0);
 	}
 
