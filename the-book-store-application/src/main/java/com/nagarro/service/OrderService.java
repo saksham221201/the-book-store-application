@@ -1,8 +1,6 @@
 package com.nagarro.service;
 
-import com.nagarro.entity.Book;
 import com.nagarro.entity.Order;
-import com.nagarro.exception.ResourceNotFoundException;
 import com.nagarro.io.Output;
 import com.nagarro.util.InputUtil;
 
@@ -14,12 +12,16 @@ import java.util.Map;
 
 public class OrderService {
     private static final Map<Long, Order> orderInventory = new HashMap<>();
+    private static Long nextOrderId = 1L;
 
     public static void addOrder(){
         System.out.print("Enter ISBN of book you want to order: ");
         String isbn = InputUtil.readInput();
-        Order order = new Order(1L, isbn, "PLACED", LocalDateTime.now());
-        orderInventory.put(1L, order);
+        BookService.getBookByISBN(isbn);
+        Order order = new Order(nextOrderId, isbn, "PLACED", LocalDateTime.now());
+        orderInventory.put(nextOrderId, order);
+        BookService.updateQuantity(isbn);
+        nextOrderId++;
         System.out.println("Order Placed Successfully");
     }
 
@@ -33,19 +35,21 @@ public class OrderService {
     }
 
     public static void updateOrderStatus() {
-        System.out.print("Enter ISBN of the book: ");
+        System.out.print("Enter Order Id: ");
         String orderId = InputUtil.readInput();
-        try {
-            if (!orderInventory.containsKey(orderId)) {
-                throw new ResourceNotFoundException("OrderId not found!!", 404);
-            }
-            Order order = orderInventory.get(orderId);
-            System.out.print("Enter the order Status: ");
-            String orderStatus = InputUtil.readInput();
-            order.setOrderStatus(orderStatus);
-            System.out.println("Order Status updated!!");
-        } catch (ResourceNotFoundException e) {
-            System.out.println("Error! "+e.getMessage() + "\n" + "Status code: "+ e.getCode());
-        }
+        Long id = Long.parseLong(orderId);
+        System.out.print("Enter the order Status: ");
+        String updatedOrderStatus = InputUtil.readInput();
+        Order order = orderInventory.get(id);
+        order.setOrderStatus(updatedOrderStatus);
+        System.out.println("Order Status updated!!");
+    }
+
+    public static void trackOrder() {
+        System.out.print("Enter Order ID: ");
+        String orderId = InputUtil.readInput();
+        Long id = Long.parseLong(orderId);
+        Order order = orderInventory.get(id);
+        System.out.println("The Order Status is " + order.getOrderStatus());
     }
 }

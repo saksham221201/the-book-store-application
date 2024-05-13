@@ -14,38 +14,27 @@ public class AdminInput {
         System.out.println("5. Find a Book");
         System.out.println("6. Search for a Book");
         System.out.println("7. Update Order Status");
-        System.out.println("8. Exit to Main Menu");
+        System.out.println("8. Mark Out Of Stock");
+        System.out.println("9. Exit to Main Menu");
 
         System.out.print("Enter your option: ");
         int option = InputUtil.readIntInput();
 
-        switch (option){
-            case 1:
-                BookService.addBook();
-                break;
-            case 2:
-                BookService.updateBook();
-                break;
-            case 3:
-                BookService.listAllBooks();
-                break;
-            case 4:
-                OrderService.listAllOrders();
-                break;
-            case 5:
-            	BookService.findABook();
-            	break;
-            case 6:
-                BookService.searchABook();
-                break;
-            case 7:
-                OrderService.updateOrderStatus();
-                break;
-            case 8:
+        // Switch case using JAVA 17 Constructs
+        switch (option) {
+            case 1 -> BookService.addBook();
+            case 2 -> BookService.updateBook();
+            case 3 -> BookService.listAllBooks();
+            case 4 -> OrderService.listAllOrders();
+            case 5 -> BookService.findABook();
+            case 6 -> BookService.searchABook();
+            case 7 -> OrderService.updateOrderStatus();
+            case 8 -> BookService.markOutOfStock();
+            case 9 -> {
                 return false;
-            default:
-                System.out.println("Invalid choice");
-        }
+            }
+            default -> System.out.println("Invalid choice");
+        };
         return true;
     }
 }
