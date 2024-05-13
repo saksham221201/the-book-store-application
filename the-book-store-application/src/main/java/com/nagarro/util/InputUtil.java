@@ -30,4 +30,19 @@ public class InputUtil {
             }
         }
     }
+
+    public static Long readLongInput() {
+        while (true) {
+            try {
+                return Long.parseLong(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid Input. Please enter Long/Integer.");
+                System.out.print("Enter OrderId: ");
+            }
+        }
+    }
+
+    public static void close() {
+        scanner.close();
+    }
 }

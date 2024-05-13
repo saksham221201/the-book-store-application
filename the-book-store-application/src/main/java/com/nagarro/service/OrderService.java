@@ -1,6 +1,9 @@
 package com.nagarro.service;
 
+import com.nagarro.constant.Constant;
+import com.nagarro.entity.Book;
 import com.nagarro.entity.Order;
+import com.nagarro.exception.ResourceNotFoundException;
 import com.nagarro.io.Output;
 import com.nagarro.util.InputUtil;
 
@@ -17,12 +20,20 @@ public class OrderService {
     public static void addOrder(){
         System.out.print("Enter ISBN of book you want to order: ");
         String isbn = InputUtil.readInput();
-        BookService.getBookByISBN(isbn);
-        Order order = new Order(nextOrderId, isbn, "PLACED", LocalDateTime.now());
-        orderInventory.put(nextOrderId, order);
-        BookService.updateQuantity(isbn);
-        nextOrderId++;
-        System.out.println("Order Placed Successfully");
+        try {
+            Book book = BookService.getBookByISBN(isbn);
+            if (book.getQuantity() == 0) {
+                System.out.println("Cannot order book because it is not in the Inventory");
+            } else {
+                Order order = new Order(nextOrderId, isbn, Constant.PLACED.name(), LocalDateTime.now());
+                orderInventory.put(nextOrderId, order);
+                BookService.updateQuantity(isbn);
+                nextOrderId++;
+                System.out.println("Order Placed Successfully");
+            }
+        } catch (ResourceNotFoundException e) {
+            System.out.println("Error! "+e.getMessage() + "\n" + "Status code: "+ e.getCode());
+        }
     }
 
     public static void listAllOrders(){
@@ -34,22 +45,40 @@ public class OrderService {
         }
     }
 
+    public static Order getOrderByOrderId(Long orderId) {
+        Order order = orderInventory.get(orderId);
+        try {
+            if (order == null) {
+                throw new ResourceNotFoundException("OrderId not found in the Inventory", 404);
+            }
+        } catch (ResourceNotFoundException e) {
+            throw new ResourceNotFoundException(e.getMessage(), e.getCode());
+        }
+        return order;
+    }
+
     public static void updateOrderStatus() {
         System.out.print("Enter Order Id: ");
-        String orderId = InputUtil.readInput();
-        Long id = Long.parseLong(orderId);
-        System.out.print("Enter the order Status: ");
-        String updatedOrderStatus = InputUtil.readInput();
-        Order order = orderInventory.get(id);
-        order.setOrderStatus(updatedOrderStatus);
-        System.out.println("Order Status updated!!");
+        Long orderId = InputUtil.readLongInput();
+        try {
+            Order order = getOrderByOrderId(orderId);
+            System.out.print("Enter the order Status: ");
+            String updatedOrderStatus = InputUtil.readInput();
+            order.setOrderStatus(updatedOrderStatus);
+            System.out.println("Order Status updated!!");
+        } catch (ResourceNotFoundException e) {
+            System.out.println("Error! "+e.getMessage() + "\n" + "Status code: "+ e.getCode());
+        }
     }
 
     public static void trackOrder() {
         System.out.print("Enter Order ID: ");
-        String orderId = InputUtil.readInput();
-        Long id = Long.parseLong(orderId);
-        Order order = orderInventory.get(id);
-        System.out.println("The Order Status is " + order.getOrderStatus());
+        Long orderId = InputUtil.readLongInput();
+        try {
+            Order order = getOrderByOrderId(orderId);
+            System.out.println("The Order Status is " + order.getOrderStatus());
+        } catch (ResourceNotFoundException e) {
+            System.out.println("Error! "+e.getMessage() + "\n" + "Status code: "+ e.getCode());
+        }
     }
 }
