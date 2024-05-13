@@ -9,9 +9,10 @@ public class UserInput {
         System.out.println("User Options");
         System.out.println("1. List all Books");
         System.out.println("2. Order a Book");
-        System.out.println("3. Track Order by Order ID");
-        System.out.println("4. Search for a Book");
-        System.out.println("5. Exit to Main Menu");
+        System.out.println("3. List all Orders");
+        System.out.println("4. Track Order by Order ID");
+        System.out.println("5. Search for a Book");
+        System.out.println("6. Exit to Main Menu");
 
         System.out.print("Enter your option: ");
         int option = InputUtil.readIntInput();
@@ -20,9 +21,10 @@ public class UserInput {
         switch (option){
             case 1 -> BookService.listAllBooks();
             case 2 -> OrderService.addOrder();
-            case 3 -> OrderService.trackOrder();
-            case 4 -> BookService.searchABook();
-            case 5 -> {
+            case 3 -> OrderService.listAllOrders();
+            case 4 -> OrderService.trackOrder();
+            case 5 -> BookService.searchABook();
+            case 6 -> {
                 return false;
             }
             default -> System.out.println("Invalid choice");

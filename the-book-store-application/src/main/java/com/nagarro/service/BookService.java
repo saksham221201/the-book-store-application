@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 public class BookService {
-	private static final Map<String, Book> bookInventory = new HashMap<>();
+	private static final Map<String, Book> bookInventory = new TreeMap<>(Collections.reverseOrder());
 
 	public static void preFillData() {
 		Book book1 = new Book("A1", "HARRY POTTER AND THE PHILOSOPHER'S STONE", "J.K. ROWLING", "THIS IS A HARRY POTTER SERIES.", 2000.0,LocalDateTime.now());
