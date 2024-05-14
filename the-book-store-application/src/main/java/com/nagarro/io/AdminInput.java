@@ -15,7 +15,9 @@ public class AdminInput {
         System.out.println("6. Search for a Book");
         System.out.println("7. Update Order Status");
         System.out.println("8. Mark Out Of Stock");
-        System.out.println("9. Exit to Main Menu");
+        System.out.println("9. Get Top 5 Selling Books");
+        System.out.println("10. Profit");
+        System.out.println("11. Exit to Main Menu");
 
         System.out.print("Enter your option: ");
         int option = InputUtil.readIntInput();
@@ -30,7 +32,9 @@ public class AdminInput {
             case 6 -> BookService.searchABook();
             case 7 -> OrderService.updateOrderStatus();
             case 8 -> BookService.markOutOfStock();
-            case 9 -> {
+            case 9 -> BookService.getTopFiveSelling();
+            case 10 -> BookService.getMaximumProfit();
+            case 11 -> {
                 return false;
             }
             default -> System.out.println("Invalid choice");
