@@ -18,12 +18,18 @@ public class BookService {
 		Book book3 = new Book("C3", "HARRY POTTER AND THE CHAMBER OF SECRETS", "J.K. ROWLING", "THIS IS A HARRY POTTER SERIES.", 2200.0,LocalDateTime.now());
 		Book book4 = new Book("D4","THE LION INSIDE", "RACHEL BRIGHT", "BOARD BOOK EDITION OF THIS BESTSELLING STORY.", 5400.0,LocalDateTime.now());
 		Book book5 = new Book("E5", "ONCE A THIEF", "CHRISTOPHER REICH", "FACING ENEMIES AT EVERY TURN, PRIVATE SPY.", 4375.0,LocalDateTime.now());
+		Book book6 = new Book("F6", "STORY OF MY LIFE", "SAKSHAM", "THIS IS THE STORY OF SAKSHAM'S LIFE.", 5600.0, LocalDateTime.now());
+		Book book7 = new Book("F7", "STORY OF HIS LIFE", "KAMAD", "THIS IS THE STORY OF KAMAD'S LIFE.", 5600.0, LocalDateTime.now());
+		Book book8 = new Book("G1", "HELL OF IT ALL", "CHARLIE BROOKER", "THIS IS HELL OF IT ALL BY CHARLIE", 648, LocalDateTime.now());
 
-		bookInventory.put("A1", book1);
-		bookInventory.put("B2", book2);
-		bookInventory.put("C3", book3);
-		bookInventory.put("D4", book4);
-		bookInventory.put("E5", book5);
+		bookInventory.put(book1.getIsbn(), book1);
+		bookInventory.put(book2.getIsbn(), book2);
+		bookInventory.put(book3.getIsbn(), book3);
+		bookInventory.put(book4.getIsbn(), book4);
+		bookInventory.put(book5.getIsbn(), book5);
+		bookInventory.put(book6.getIsbn(), book6);
+		bookInventory.put(book7.getIsbn(), book7);
+		bookInventory.put(book8.getIsbn(), book8);
 	}
 
 	public static void addBook() {
@@ -95,7 +101,8 @@ public class BookService {
 	}
 
 	public static void listAllBooks() {
-		List<Book> books = new ArrayList<>(bookInventory.values());
+		List<Book> books = new ArrayList<>(bookInventory.values()).stream()
+				.sorted((s1,s2)-> s2.getArrivalTime().compareTo(s1.getArrivalTime())).toList();
 		Output.displayBooks(books);
 	}
 
@@ -142,5 +149,22 @@ public class BookService {
 		} else {
 			Output.displayBooks(searchResult);
 		}
+	}
+
+	public static void getTopFiveSelling() {
+		List<Book> books = bookInventory.values().stream().sorted(Comparator.comparingInt(Book::getQuantity))
+				.limit(5).toList();
+		Output.displayBooks(books);
+	}
+
+	public static void getMaximumProfit() {
+		List<Book> maximumProfit = bookInventory.values().stream().sorted(Comparator.comparingInt(Book::getQuantity))
+				.limit(1).toList();
+
+		System.out.println("Maximum Profit");
+		for (Book book : maximumProfit) {
+			System.out.println(book.getIsbn() + " " + book.getBookName() + " " + book.getBookPrice() * (5 - book.getQuantity()));
+		}
+		System.out.println();
 	}
 }

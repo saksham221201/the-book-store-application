@@ -1,4 +1,4 @@
-package com.nagarro;
+package com.nagarro.main;
 
 import com.nagarro.constant.Constant;
 import com.nagarro.io.AdminInput;
