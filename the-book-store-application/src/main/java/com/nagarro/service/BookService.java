@@ -121,17 +121,6 @@ public class BookService {
 		}
 	}
 
-	public static Book getBookByISBN(String isbn) {
-		Book book = bookInventory.get(isbn);
-		try {
-			if (book == null) {
-				throw new ResourceNotFoundException("Book not found in the Inventory", 404);
-			}
-		} catch (ResourceNotFoundException e) {
-			throw new ResourceNotFoundException(e.getMessage(), e.getCode());
-		}
-		return book;
-	}
 
 	public static void searchABook() {
 		System.out.print("Search: ");
@@ -165,6 +154,28 @@ public class BookService {
 		for (Book book : maximumProfit) {
 			System.out.println(book.getIsbn() + " " + book.getBookName() + " " + book.getBookPrice() * (5 - book.getQuantity()));
 		}
-		System.out.println();
 	}
+
+	public static Book getBookByName(String bookName) {
+		for (Map.Entry<String, Book> entry : bookInventory.entrySet()) {
+			Book book = entry.getValue();
+			if (book.getBookName().equalsIgnoreCase(bookName)) {
+				return book;
+			}
+		} throw new ResourceNotFoundException("Book not found in the Inventory", 404);
+	}
+
+	/*
+        public static Book getBookByISBN(String isbn) {
+            Book book = bookInventory.get(isbn);
+            try {
+                if (book == null) {
+                    throw new ResourceNotFoundException("Book not found in the Inventory", 404);
+                }
+            } catch (ResourceNotFoundException e) {
+                throw new ResourceNotFoundException(e.getMessage(), e.getCode());
+            }
+            return book;
+        }
+    */
 }

@@ -18,16 +18,17 @@ public class OrderService {
     private static Long nextOrderId = 1L;
 
     public static void addOrder(){
-        System.out.print("Enter ISBN of book you want to order: ");
-        String isbn = InputUtil.readInput();
+        BookService.listAllBooks();
+        System.out.print("Enter the book name you want to order: ");
+        String bookName = InputUtil.readInput();
         try {
-            Book book = BookService.getBookByISBN(isbn);
+            Book book = BookService.getBookByName(bookName);
             if (book.getQuantity() == 0) {
                 System.out.println("Cannot order book because it is not in the Inventory");
             } else {
-                Order order = new Order(nextOrderId, isbn, Constant.PLACED.name(), LocalDateTime.now());
+                Order order = new Order(nextOrderId, book.getIsbn(), Constant.PLACED.name(), LocalDateTime.now());
                 orderInventory.put(nextOrderId, order);
-                BookService.updateQuantity(isbn);
+                BookService.updateQuantity(book.getIsbn());
                 nextOrderId++;
                 System.out.println("Order Placed Successfully");
             }
