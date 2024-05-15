@@ -14,12 +14,16 @@ import static org.junit.jupiter.api.Assertions.*;
 class BookServiceTest {
 
     private static final Map<String, Book> bookInventory = new TreeMap<>(Collections.reverseOrder());
+    private BookService bookService;
+
+
 
     @Test
     @DisplayName("Add Book")
     void addBook() {
         Book book = new Book("h5", "Test Book", "Test Author", "Test Description", 4000.0, LocalDateTime.now());
         bookInventory.put(book.getIsbn(), book);
+        assertTrue(bookInventory.containsKey("h5"));
     }
 
     @Test
