@@ -17,6 +17,8 @@ import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.times;
 
+import java.time.LocalDateTime;
+
 @ExtendWith(MockitoExtension.class)
 class BookServiceTest {
 
@@ -40,9 +42,6 @@ class BookServiceTest {
     @DisplayName("Add Book")
     void testAddBook() {
 		
-		
-		
-        
 		inputMock.when(InputUtil :: readInput).thenReturn("h5","Test Book","Test Author","Test desc");
         
         inputMock.when(InputUtil :: readDoubleInput).thenReturn(4000.0);
@@ -72,26 +71,52 @@ class BookServiceTest {
 
     @Test
     void updateQuantity() {
+    	BookService.updateQuantity("B2");
+    	Book testBook = BookService.getBookByISBN("B2");
+    	
+    	assertEquals(4, testBook.getQuantity());
     }
 
     @Test
     void markOutOfStock() {
+    	
+    	inputMock.when(InputUtil :: readInput).thenReturn("C3");
+    	
+    	BookService.markOutOfStock();
+    	
+    	Book outOfStockBook = BookService.getBookByISBN("C3");
+    	
+    	assertEquals(0, outOfStockBook.getQuantity());
     }
 
     @Test
     void listAllBooks() {
+    	BookService.listAllBooks();
+    	outputMock.verify(()-> Output.displayBooks(anyList()),times(1));
     }
 
     @Test
     void findABook() {
+    	
     }
 
     @Test
     void getBookByISBN() {
+    	
+    	inputMock.when(InputUtil :: readInput).thenReturn("E5");
+    	
+    	Book testBook = BookService.getBookByISBN("E5");
+    	
+    	assertEquals("ONCE A THIEF", testBook.getBookName());
+    	assertEquals("CHRISTOPHER REICH", testBook.getAuthorName());
+    	assertEquals("FACING ENEMIES AT EVERY TURN, PRIVATE SPY.", testBook.getDescription());
+    	assertEquals(4375.0, testBook.getBookPrice(), 0.01);
+    	
     }
 
     @Test
     void searchABook() {
+    	inputMock.when(InputUtil :: readInput).thenReturn("STORY OF MY LIFE");
     }
 
     @Test
