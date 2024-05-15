@@ -165,7 +165,6 @@ public class BookService {
 		} throw new ResourceNotFoundException("Book not found in the Inventory", 404);
 	}
 
-	/*
         public static Book getBookByISBN(String isbn) {
             Book book = bookInventory.get(isbn);
             try {
@@ -177,5 +176,4 @@ public class BookService {
             }
             return book;
         }
-    */
 }
