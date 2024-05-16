@@ -1,84 +1,122 @@
 package com.nagarro.service;
 
 import com.nagarro.entity.Book;
-import org.junit.jupiter.api.BeforeAll;
+import com.nagarro.io.Output;
+import com.nagarro.util.InputUtil;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.Map;
-import java.util.TreeMap;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.MockedStatic;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyList;
+import static org.mockito.Mockito.mockStatic;
+import static org.mockito.Mockito.times;
 
+import java.time.LocalDateTime;
+
+@ExtendWith(MockitoExtension.class)
 class BookServiceTest {
 
-    private static final Map<String, Book> bookInventory = new TreeMap<>(Collections.reverseOrder());
-
-    @BeforeAll
-    public static void setUp() {
-        Book book1 = new Book("A1", "HARRY POTTER AND THE PHILOSOPHER'S STONE", "J.K. ROWLING", "THIS IS A HARRY POTTER SERIES.", 2000.0,LocalDateTime.now());
-        Book book2 = new Book("B2", "A SHERLOCK HOLMES MYSTERY", "SIR ARTHUR CONAN", "THE RETURN OF SHERLOCK HOLMES EIGHT YEARS AFTER HIS APPARENT DEATH.", 2500.0,LocalDateTime.now());
-        Book book3 = new Book("C3", "HARRY POTTER AND THE CHAMBER OF SECRETS", "J.K. ROWLING", "THIS IS A HARRY POTTER SERIES.", 2200.0,LocalDateTime.now());
-        Book book4 = new Book("D4","THE LION INSIDE", "RACHEL BRIGHT", "BOARD BOOK EDITION OF THIS BESTSELLING STORY.", 5400.0,LocalDateTime.now());
-        Book book5 = new Book("E5", "ONCE A THIEF", "CHRISTOPHER REICH", "FACING ENEMIES AT EVERY TURN, PRIVATE SPY.", 4375.0,LocalDateTime.now());
-        Book book6 = new Book("F6", "STORY OF MY LIFE", "SAKSHAM", "THIS IS THE STORY OF SAKSHAM'S LIFE.", 5600.0, LocalDateTime.now());
-        Book book7 = new Book("F7", "STORY OF HIS LIFE", "KAMAD", "THIS IS THE STORY OF KAMAD'S LIFE.", 5600.0, LocalDateTime.now());
-        Book book8 = new Book("G1", "HELL OF IT ALL", "CHARLIE BROOKER", "THIS IS HELL OF IT ALL BY CHARLIE", 648, LocalDateTime.now());
-
-        bookInventory.put(book1.getIsbn(), book1);
-        bookInventory.put(book2.getIsbn(), book2);
-        bookInventory.put(book3.getIsbn(), book3);
-        bookInventory.put(book4.getIsbn(), book4);
-        bookInventory.put(book5.getIsbn(), book5);
-        bookInventory.put(book6.getIsbn(), book6);
-        bookInventory.put(book7.getIsbn(), book7);
-        bookInventory.put(book8.getIsbn(), book8);
+	private MockedStatic<InputUtil> inputMock;
+	private MockedStatic<Output> outputMock;
+    
+    @BeforeEach
+    public void setUp() {
+    	inputMock = mockStatic(InputUtil.class);
+    	outputMock = mockStatic(Output.class);
+    	BookService.preFillData();
+    }
+    
+    @AfterEach
+    public void tearDown() {
+    	inputMock.close();
+    	outputMock.close();
     }
 
-    @Test
+	@Test
     @DisplayName("Add Book")
-    void addBook() {
-        Book book = new Book("H1", "Test Book", "Test Author", "Test Description", 4000.0, LocalDateTime.now());
-        bookInventory.put(book.getIsbn(), book);
-        assertTrue(bookInventory.containsKey("H1"));
+    void testAddBook() {
+		
+		inputMock.when(InputUtil :: readInput).thenReturn("h5","Test Book","Test Author","Test desc");
+        
+        inputMock.when(InputUtil :: readDoubleInput).thenReturn(4000.0);
+        
+        BookService.addBook();
+        
+        outputMock.verify(()-> Output.displayBooks(anyList()),times(1));
+
     }
 
     @Test
-    @DisplayName("Add Book Exception")
-    void addBookException() {
-        Book book = new Book("h5", "Test Book", "Test Author", "Test Description", 4000.0, LocalDateTime.now());
-        bookInventory.put(book.getIsbn(), book);
-        assert true;
-    }
+    void updateBook() {   	
 
-    @Test
-    void updateBook() {
+		inputMock.when(InputUtil :: readInput).thenReturn("A1","Test Book","Test Author","Test desc");
+        
+        inputMock.when(InputUtil :: readDoubleInput).thenReturn(4000.0);
+        
+        BookService.updateBook();
+        
+        Book updatedBook = BookService.getBookByISBN("A1");
+        assertEquals("Test Book", updatedBook.getBookName());
+        assertEquals("Test Author", updatedBook.getAuthorName());
+        assertEquals("Test desc", updatedBook.getDescription());
+        assertEquals(4000.0, updatedBook.getBookPrice(), 0.01);
+        
     }
 
     @Test
     void updateQuantity() {
+    	BookService.updateQuantity("B2");
+    	Book testBook = BookService.getBookByISBN("B2");
+    	
+    	assertEquals(4, testBook.getQuantity());
     }
 
     @Test
     void markOutOfStock() {
+    	
+    	inputMock.when(InputUtil :: readInput).thenReturn("C3");
+    	
+    	BookService.markOutOfStock();
+    	
+    	Book outOfStockBook = BookService.getBookByISBN("C3");
+    	
+    	assertEquals(0, outOfStockBook.getQuantity());
     }
 
     @Test
     void listAllBooks() {
+    	BookService.listAllBooks();
+    	outputMock.verify(()-> Output.displayBooks(anyList()),times(1));
     }
 
     @Test
     void findABook() {
+    	
     }
 
     @Test
     void getBookByISBN() {
+    	
+    	inputMock.when(InputUtil :: readInput).thenReturn("E5");
+    	
+    	Book testBook = BookService.getBookByISBN("E5");
+    	
+    	assertEquals("ONCE A THIEF", testBook.getBookName());
+    	assertEquals("CHRISTOPHER REICH", testBook.getAuthorName());
+    	assertEquals("FACING ENEMIES AT EVERY TURN, PRIVATE SPY.", testBook.getDescription());
+    	assertEquals(4375.0, testBook.getBookPrice(), 0.01);
+    	
     }
 
     @Test
     void searchABook() {
+    	inputMock.when(InputUtil :: readInput).thenReturn("STORY OF MY LIFE");
     }
 
     @Test
