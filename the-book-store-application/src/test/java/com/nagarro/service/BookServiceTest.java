@@ -97,6 +97,7 @@ class BookServiceTest {
 
     @Test
     void findABook() {
+    	inputMock.when(InputUtil :: readInput).thenReturn("D4");
     	
     }
 
@@ -117,13 +118,21 @@ class BookServiceTest {
     @Test
     void searchABook() {
     	inputMock.when(InputUtil :: readInput).thenReturn("STORY OF MY LIFE");
+    	
+    	BookService.searchABook();
+    	
+    	outputMock.verify(()-> Output.displayBooks(anyList()),times(1));
     }
 
     @Test
     void getTopFiveSelling() {
+    	BookService.getTopFiveSelling();
+    	
+    	outputMock.verify(()-> Output.displayBooks(anyList()),times(1));
     }
 
     @Test
     void getMaximumProfit() {
+    	
     }
 }
