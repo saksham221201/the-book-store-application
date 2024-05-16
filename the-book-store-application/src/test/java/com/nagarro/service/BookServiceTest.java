@@ -17,7 +17,6 @@ import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.times;
 
-import java.time.LocalDateTime;
 
 @ExtendWith(MockitoExtension.class)
 class BookServiceTest {

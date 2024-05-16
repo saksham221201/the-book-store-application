@@ -106,11 +106,11 @@ public class BookService {
 		Output.displayBooks(books);
 	}
 
-	public static void findABook() {
+	public static Book findABook() {
 		System.out.print("Enter ISBN: ");
 		String isbn = InputUtil.readInput();
+		Book book = bookInventory.get(isbn);
 		try {
-			Book book = bookInventory.get(isbn);
 			if (book == null) {
 				throw new ResourceNotFoundException("ISBN not found", 404);
 			} else {
@@ -119,6 +119,7 @@ public class BookService {
 		} catch (ResourceNotFoundException e) {
 			System.out.println("Error! "+e.getMessage() + "\n" + "Status code: "+ e.getCode());
 		}
+		return book;
 	}
 
 

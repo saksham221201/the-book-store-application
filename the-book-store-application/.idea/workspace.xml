@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7609ab66-328f-4ac7-8953-d3c1b11acd86" name="Changes" comment="">
+    <list default="true" id="7609ab66-328f-4ac7-8953-d3c1b11acd86" name="Changes" comment="Changes pulled">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nagarro/io/AdminInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nagarro/io/AdminInput.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/nagarro/service/BookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nagarro/service/BookService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/nagarro/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nagarro/service/OrderService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/nagarro/service/BookServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/nagarro/service/BookServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -73,6 +72,19 @@
       <option name="presentableId" value="Default" />
       <updated>1714031395809</updated>
     </task>
+    <task id="LOCAL-00001" summary="Changes pulled">
+      <option name="closed" value="true" />
+      <created>1715837152982</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1715837152982</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Changes pulled" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes pulled" />
   </component>
 </project>

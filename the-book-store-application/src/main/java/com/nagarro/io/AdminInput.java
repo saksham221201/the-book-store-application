@@ -1,5 +1,6 @@
 package com.nagarro.io;
 
+import com.nagarro.entity.Book;
 import com.nagarro.service.BookService;
 import com.nagarro.service.OrderService;
 import com.nagarro.util.InputUtil;
@@ -28,7 +29,9 @@ public class AdminInput {
             case 2 -> BookService.updateBook();
             case 3 -> BookService.listAllBooks();
             case 4 -> OrderService.listAllOrders();
-            case 5 -> BookService.findABook();
+            case 5 -> {
+                Book book = BookService.findABook();
+            }
             case 6 -> BookService.searchABook();
             case 7 -> OrderService.updateOrderStatus();
             case 8 -> BookService.markOutOfStock();
